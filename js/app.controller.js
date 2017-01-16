@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module("demoApp")
-        .demoApp.controller("mainController", mainController);
+        .controller("mainController", mainController);
 
     function mainController($scope, userService) {
         $scope.users = userService.users();

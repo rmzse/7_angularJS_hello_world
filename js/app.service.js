@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module("demoApp")
-        .demoApp.service('userService', userService);
+        .service('userService', userService);
 
     function userService(){
         var collection = [

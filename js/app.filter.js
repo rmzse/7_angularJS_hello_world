@@ -2,7 +2,7 @@
     'use strict';
     angular
         .module("demoApp")
-        .demoApp.filter('sortByFirstName', sortByFirstName);
+        .filter('sortByFirstName', sortByFirstName);
 
     function sortByFirstName() {
         return function (array) {
