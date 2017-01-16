@@ -5,7 +5,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   </head>
   <body data-ng-app="demoApp" data-ng-controller="mainController">
-    <say-hello message="Perkkele! "></say-hello>
+    <div data-ng-repeat="user in users"><say-hello message="Tervetuola! "></say-hello></div>
     <script type="text/javascript">
       var demoApp = angular.module("demoApp", []);
 
