@@ -5,7 +5,13 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   </head>
   <body data-ng-app="demoApp" data-ng-controller="mainController">
+    <form data-ng-submit="addUser()">
+      <input type="text" data-ng-model="newUser.firstName" placeholder="Gimme a first name!">
+      <input type="text" data-ng-model="newUser.lastName" placeholder="Gimme a last name!">
+    </form>
+  
     <div data-ng-repeat="user in users"><say-hello message="Tervetuola! "></say-hello></div>
+    
     <script type="text/javascript">
       var demoApp = angular.module("demoApp", []);
 
@@ -19,7 +25,7 @@
           link: function ($scope, element, attrs) {
             $scope.message = attrs.message;
           },
-          template: "<h1>{{[message, user.firstName, user.lastName].join(' ')}}! {{3+5}}!</h1>"
+          template: "<h1>{{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
         };
       });
 
