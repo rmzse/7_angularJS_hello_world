@@ -7,7 +7,8 @@
   <body data-ng-app="demoApp" data-ng-controller="mainController">
     <form data-ng-submit="addUser()">
       <input type="text" data-ng-model="newUser.firstName" placeholder="Gimme a first name!">
-      <input type="text" data-ng-model="newUser.lastName" placeholder="Gimme a last name!">
+      <input type="text" data-ng-model="newUser.lastName" placeholder="Gimme a last  name!">
+      <button type="submit">ADD USER</button>
     </form>
   
     <div data-ng-repeat="user in users"><say-hello message="Tervetuola! "></say-hello></div>
