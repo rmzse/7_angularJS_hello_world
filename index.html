@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="js/app.module.js"></script>
   </head>
   <body data-ng-app="demoApp" data-ng-controller="mainController">
     <form data-ng-submit="addUser()">
@@ -14,9 +15,6 @@
     <div data-ng-repeat="user in users | sortByFirstName"><say-hello message="Tervetuola! "></say-hello></div>
     
     <script type="text/javascript">
-      var demoApp = angular.module("demoApp", []);
-
-
       demoApp.controller("mainController", function ($scope, userService) {
         $scope.users = userService.users();
         $scope.newUser = {};
