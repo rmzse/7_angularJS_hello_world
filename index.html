@@ -1,21 +1,60 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-    <script src="js/app.module.js"></script>
-    <script src="js/app.controller.js"></script>
-    <script src="js/app.directive.js"></script>
-    <script src="js/app.service.js"></script>
-    <script src="js/app.filter.js"></script>
-  </head>
-  <body data-ng-app="demoApp" data-ng-controller="mainController">
-    <form data-ng-submit="addUser()">
-      <input type="text" data-ng-model="newUser.firstName" placeholder="Gimme a first name!">
-      <input type="text" data-ng-model="newUser.lastName" placeholder="Gimme a last  name!">
-      <button type="submit">ADD USER</button>
-    </form>
-  
-    <div data-ng-repeat="user in users | sortByFirstName"><say-hello message="Tervetuola! "></say-hello></div>
-  </body>
+<head>
+  <meta charset="utf-8">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+</head>
+<body data-ng-app="demoApp" data-ng-controller="mainController">
+<form data-ng-submit="addUser()">
+  <input type="text" data-ng-model="newUser.firstName" placeholder="Gimme a first name!">
+  <input type="text" data-ng-model="newUser.lastName" placeholder="Gimme a last  name!">
+  <button type="submit">ADD USER</button>
+</form>
+
+<div data-ng-repeat="user in users | sortByFirstName"><say-hello message="Tervetuola! "></say-hello></div>
+
+<script type="text/javascript">
+    var demoApp = angular.module("demoApp", []);
+    demoApp.controller("mainController", function ($scope, userService) {
+        $scope.users = userService.users();
+        $scope.newUser = {};
+        $scope.addUser = function () {
+            userService.add($scope.newUser);
+            $scope.newUser = {};
+        }
+    });
+    demoApp.directive("sayHello", function() {
+        return {
+            scope: false,
+            link: function ($scope, element, attrs) {
+                $scope.message = attrs.message;
+            },
+            template: "<h1>{{[message, user.firstName, user.lastName].join(' ') | uppercase }}!</h1>"
+        };
+    });
+    demoApp.service('userService', function(){
+        var collection = [
+            {firstName: 'Betty', lastName: 'Boop'},
+            {firstName: 'Donald', lastName: 'Paul'},
+            {firstName: 'Jessica', lastName: 'Rabbit'}
+        ];
+        return {
+            users: function() {
+                return collection;
+            },
+            add: function(object) {
+                collection.push(object);
+            }
+        }
+    });
+    demoApp.filter('sortByFirstName', function () {
+        return function (array) {
+            function compare(a, b) {
+                return a.firstName.localeCompare(b.firstName)
+            }
+            return array.sort(compare);
+        }
+    });
+</script>
+</body>
 </html>
