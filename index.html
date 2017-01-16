@@ -5,13 +5,19 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   </head>
   <body data-ng-app="demoApp" data-ng-controller="mainController">
-    <h1>{{['Hello', firstName, lastName].join(' ')}}! {{2+5}}!</h1>
+    <say-hello></say-hello>
     <script type="text/javascript">
       var demoApp = angular.module("demoApp", []);
 
       demoApp.controller("mainController", function ($scope) {
-        $scope.firstName ="Betty";
+        $scope.firstName ="Show-Betty";
         $scope.lastName = "Boop";
+      });
+
+      demoApp.directive("sayHello", function() {
+        return {
+          template: "<h1>{{['Hello', firstName, lastName].join(' ')}}! {{3+5}}!</h1>"
+        };
       });
     </script>
   </body>
