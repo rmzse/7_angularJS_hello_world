@@ -16,9 +16,16 @@
     <script type="text/javascript">
       var demoApp = angular.module("demoApp", []);
 
+
       demoApp.controller("mainController", function ($scope, userService) {
         $scope.users = userService.users();
+        $scope.newUser = {};
+        $scope.addUser = function () {
+            userService.add($scope.newUser);
+            $scope.newUser = {};
+        }
       });
+
 
       demoApp.directive("sayHello", function() {
         return {
@@ -37,8 +44,11 @@
              {firstName: 'Jessica', lastName: 'Rabbit'}
          ];
          return {
-             users: function () {
+             users: function() {
                  return collection;
+             },
+             add: function(object) {
+                 collection.push(object);
              }
          }
       });
