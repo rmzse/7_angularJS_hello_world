@@ -2,17 +2,14 @@
     'use strict';
     angular
         .module("demoApp")
-        .directive("sayHello", sayHello);
-    
-    function sayHello() {
-        return {
-            scope: false,
-            link:
+        .demoApp.controller("mainController", mainController);
 
-                function ($scope, element, attrs) {
-                $scope.message = attrs.message;
-            },
-            template: "<h1>{{[message, user.firstName, user.lastName].join(' ') | uppercase }}!</h1>"
-        };
+    function mainController($scope, userService) {
+        $scope.users = userService.users();
+        $scope.newUser = {};
+        $scope.addUser = function () {
+            userService.add($scope.newUser);
+            $scope.newUser = {};
+        }
     });
 })();
