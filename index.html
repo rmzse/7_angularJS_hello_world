@@ -11,7 +11,7 @@
       <button type="submit">ADD USER</button>
     </form>
   
-    <div data-ng-repeat="user in users"><say-hello message="Tervetuola! "></say-hello></div>
+    <div data-ng-repeat="user in users | sortByFirstName"><say-hello message="Tervetuola! "></say-hello></div>
     
     <script type="text/javascript">
       var demoApp = angular.module("demoApp", []);
@@ -33,9 +33,11 @@
           link: function ($scope, element, attrs) {
             $scope.message = attrs.message;
           },
-          template: "<h1>{{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
+          template: "<h1>{{[message, user.firstName, user.lastName].join(' ') | uppercase }}!</h1>"
         };
       });
+
+
 
       demoApp.service('userService', function(){
          var collection = [
@@ -52,6 +54,18 @@
              }
          }
       });
+
+
+      demoApp.filter('sortByFirstName', function () {
+         return function (array) {
+             function compare(a, b) {
+                 return a.firstName.localeCompare(b.firstName)
+             }
+             return array.sort(compare);
+         } 
+      });
+
+
     </script>
   </body>
 </html>
