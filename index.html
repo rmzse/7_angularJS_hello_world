@@ -16,24 +16,24 @@
     
     <script type="text/javascript">
         demoApp.controller("mainController", function ($scope, userService) {
-        $scope.users = userService.users();
-        $scope.newUser = {};
-        $scope.addUser = function () {
-            userService.add($scope.newUser);
-            $scope.newUser = {};
-        }
-      });
+          $scope.users = userService.users();
+          $scope.newUser = {};
+          $scope.addUser = function () {
+              userService.add($scope.newUser);
+              $scope.newUser = {};
+          }
+        });
 
 
         angular.module("demoApp").directive("sayHello", function() {
-        return {
-          scope: false,
-          link: function ($scope, element, attrs) {
-            $scope.message = attrs.message;
-          },
-          template: "<h1>{{[message, user.firstName, user.lastName].join(' ') | uppercase }}!</h1>"
-        };
-      });
+          return {
+            scope: false,
+            link: function ($scope, element, attrs) {
+              $scope.message = attrs.message;
+            },
+            template: "<h1>{{[message, user.firstName, user.lastName].join(' ') | uppercase }}!</h1>"
+          };
+        });
 
 
 
