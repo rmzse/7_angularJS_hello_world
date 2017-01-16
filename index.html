@@ -9,9 +9,8 @@
     <script type="text/javascript">
       var demoApp = angular.module("demoApp", []);
 
-      demoApp.controller("mainController", function ($scope) {
-        $scope.firstName ="Show-Betty";
-        $scope.lastName = "Boop";
+      demoApp.controller("mainController", function ($scope, userService) {
+        $scope.users = userService.users();
       });
 
       demoApp.directive("sayHello", function() {
@@ -24,7 +23,18 @@
         };
       });
 
-      demoApp.service(user)
+      demoApp.service('userService', function(){
+         var collection = [
+             {firstName: 'Betty', lastName: 'Boop'}
+             {firstName: 'Donald', lastName: 'Paul'}
+             {firstName: 'Jessica', lastName: 'Rabbit'}
+         ];
+         return {
+             users: function () {
+                 return collection;
+             }
+         }
+      });
     </script>
   </body>
 </html>
