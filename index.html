@@ -15,7 +15,7 @@
     <div data-ng-repeat="user in users | sortByFirstName"><say-hello message="Tervetuola! "></say-hello></div>
     
     <script type="text/javascript">
-      demoApp.controller("mainController", function ($scope, userService) {
+        demoApp.controller("mainController", function ($scope, userService) {
         $scope.users = userService.users();
         $scope.newUser = {};
         $scope.addUser = function () {
@@ -25,7 +25,7 @@
       });
 
 
-      demoApp.directive("sayHello", function() {
+        angular.module("demoApp").directive("sayHello", function() {
         return {
           scope: false,
           link: function ($scope, element, attrs) {
