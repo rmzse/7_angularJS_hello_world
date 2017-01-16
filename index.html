@@ -5,7 +5,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
   </head>
   <body data-ng-app="demoApp" data-ng-controller="mainController">
-    <say-hello></say-hello>
+    <say-hello message="Perkkele! "></say-hello>
     <script type="text/javascript">
       var demoApp = angular.module("demoApp", []);
 
@@ -16,7 +16,11 @@
 
       demoApp.directive("sayHello", function() {
         return {
-          template: "<h1>{{['Hello', firstName, lastName].join(' ')}}! {{3+5}}!</h1>"
+          scope: false,
+          link: function ($scope, element, attrs) {
+            $scope.message = attrs.message;
+          },
+          template: "<h1>{{[message, firstName, lastName].join(' ')}}! {{3+5}}!</h1>"
         };
       });
     </script>
