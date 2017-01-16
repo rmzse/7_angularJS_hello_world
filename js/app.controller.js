@@ -11,5 +11,5 @@
             userService.add($scope.newUser);
             $scope.newUser = {};
         }
-    });
+    }
 })();

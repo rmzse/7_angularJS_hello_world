@@ -18,5 +18,5 @@
                 collection.push(object);
             }
         }
-    });
+    }
 })();

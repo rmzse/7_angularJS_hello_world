@@ -3,7 +3,7 @@
     angular
         .module("demoApp")
         .directive("sayHello", sayHello);
-    
+
     function sayHello() {
         return {
             scope: false,
@@ -14,5 +14,5 @@
             },
             template: "<h1>{{[message, user.firstName, user.lastName].join(' ') | uppercase }}!</h1>"
         };
-    });
+    }
 })();
